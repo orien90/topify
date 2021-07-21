@@ -5,19 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title class="">Top 20 songs on Spotify</title>
+    <title class="">Hitlist</title>
+    <script  >
+        function myFunction() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  const lang = $("input[type='radio'][name='lang']:checked")[0].id;
+  const divRes = document.getElementById("res");
+  li = divRes.getElementsByTagName('li');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    if(li[i].className == lang){
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+        window.onload = function starting(){
+           myFunction();
+        };
+    </script>
+
 </head>
 <body>
-<h1 class="row justify-content-center ">Dette er topp 20 tamil sanger fra spotify:</h1>
+<h1 class="row justify-content-center ">Hitlist from spotify:</h1>
+<h2 class="row justify-content-center "><input type="radio" name="lang" id="en" onclick="myFunction()" checked="checked"  >English
+
+    </input>
+<input type="radio" name="lang" id="ta" onclick="myFunction()" href="" >தமிழ்
+
+    </input>
+<input type="radio" name="lang" id="kr" onclick="myFunction()" href="" >한국어
+
+    </input></h2>
+
+
+<script>
+
+</script>
 
     <br/>
-    {% for result in results %}
-    <li class=""><a target="_blank" href="{{ result.0 }}"><img src="{{result.1}}"></a>
-
-    <li/>
-
-    {% endfor %}
-
+    <div id="res">
+        {% for result in results %}
+            <li class="{{result.3}}">
+                <a target="_blank" href="{{ result.0 }}"><img src="{{result.1}}"></a>
+            <li/>
+        {% endfor %}
+    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
