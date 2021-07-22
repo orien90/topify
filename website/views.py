@@ -33,6 +33,7 @@ def getSongs(id, lang):
         songInfo.append(item[1]['track']['album']['images'][1]['url'])
         songInfo.append(item[1]['track']['album']['name'])
         songInfo.append(lang)
-        songData.append(songInfo)
+        if not songInfo in songData:
+            songData.append(songInfo)
 
 
