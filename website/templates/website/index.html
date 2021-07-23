@@ -85,6 +85,9 @@ body {
     <div class="row justify-content-center" id="res">
         {% for result in results %}
             <li class="{{result.3}}">
+                <div class="row" aria-valuemax="10">
+                    <h6  class="px-5">{{result.2}}</h6>
+                </div>
                 <a target="_blank" href="{{ result.0 }}"><img src="{{result.1}}"></a>
             <li/>
         {% endfor %}

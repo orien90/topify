@@ -31,7 +31,7 @@ def getSongs(id, lang):
         songInfo = []
         songInfo.append(item[1]['track']['album']['external_urls']['spotify'])
         songInfo.append(item[1]['track']['album']['images'][1]['url'])
-        songInfo.append(item[1]['track']['album']['name'])
+        songInfo.append(item[1]['track']['album']['name'][0:30])
         songInfo.append(lang)
         if not songInfo in songData:
             songData.append(songInfo)
