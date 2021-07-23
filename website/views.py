@@ -1,6 +1,7 @@
 import spotipy
 from django.shortcuts import render
 from spotipy.oauth2 import SpotifyClientCredentials
+import re
 
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="6ce04d774cb14eb5a05990989db5dab1",
                                                            client_secret="921f09aa289240fbab1764f4a55ba7aa"))
@@ -28,10 +29,12 @@ def getSongs(id, lang):
     results = sp.playlist_items(playlist_id=id, fields=None, limit=5, offset=0, market=None,
                                 additional_types=('track',))
     for item in enumerate(results['items']):
+        title = re.split(r'\([^)]*\)', item[1]['track']['album']['name'])
+        title = title[0]
         songInfo = []
         songInfo.append(item[1]['track']['album']['external_urls']['spotify'])
         songInfo.append(item[1]['track']['album']['images'][1]['url'])
-        songInfo.append(item[1]['track']['album']['name'][0:30])
+        songInfo.append(title)
         songInfo.append(lang)
         if not songInfo in songData:
             songData.append(songInfo)
